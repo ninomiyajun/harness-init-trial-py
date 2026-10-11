@@ -19,3 +19,10 @@ htmlcov/
 
 # OS files
 .DS_Store
+
+# 秘匿値をコミットしないため、.env で始まるファイルはすべて除外する（AGENTS.md の「秘匿値と個人情報」）。
+# 例外は、変数の名前だけを書く .env.example だけ（値は書かない）。
+.env*
+!.env.example
+# Claude Code の手元だけの設定（許可の設定などを含むため、共有しない）。
+.claude/settings.local.json
