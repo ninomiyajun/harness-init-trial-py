@@ -25,6 +25,11 @@
 
 - 秘匿値（API の鍵、トークン、Cookie、パスワード）をリポジトリのファイルに書かない。
 - `.env` で始まるファイルは `.gitignore` で除外する。例外は、変数の名前だけを書く `.env.example` だけで、値は書かない。
+- CI の `secret-scan`（`.github/workflows/secret-scan.yml`）が gitleaks で履歴の全体を調べる。秘匿値が検出されるとジョブが失敗する。
+  検出された秘匿値は、発行元で失効させて再発行する（push した時点で公開されているため）。失効させた後と誤検知のときは、
+  gitleaks が出す指紋（Fingerprint）を `.gitleaksignore` に足して、検査を通る状態に戻す。
+- `.gitleaksignore`、`.gitleaks.toml`、行の中の `gitleaks:allow`、`.github/workflows/secret-scan.yml` を変える変更は、
+  検査を通すために秘匿値を見逃す形になっていないかを、レビューで必ず確かめる。
 - コミットするファイルに個人情報（アカウント名、姓名、メールアドレス）とホームの絶対パスを書かない。パスは `~/...` か
   プレースホルダーで書く。
 
@@ -38,6 +43,7 @@
 | 試験 | `python3 -m unittest` |
 | 文書（必須のファイル、CLAUDE.md、地図、リンク、目録、行数、計画の必須の節、受け入れ確認の記録、製品の仕様の目録と状態） | `bash scripts/harness/check-docs.sh` |
 | 文書の検査の試験（`check-docs.sh` の計画、受け入れ確認の記録、仕様の検査） | `bash scripts/harness/check-docs.test.sh` |
+| 秘匿値の混入（CI で実行。手元で実行するには gitleaks の導入が要る） | `gitleaks git --redact` |
 
 リンクの検査が見るのは、インラインのリンクと画像（角括弧の文字の直後に、丸括弧で囲んだ先を続ける形）で、先に空白も
 `)` も含まないものだけである。参照形式のリンク、山括弧で囲んだ先、タイトル付きの先、自動リンク、HTML の a 要素は検査しないので、
