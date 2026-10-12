@@ -6,11 +6,12 @@
 
 ## 目的
 
-[NEEDS CLARIFICATION: この製品は何のためにあるか]
+文章の中で回数の多い語を出す（`wordtally`）。ハーネスの導入を試すためのサンプルでもある（`README.md`）。
 
 ## 対象の利用者
 
-[NEEDS CLARIFICATION: だれが、どこで、どう使うか]
+- だれが: ハーネスの導入を試す開発者（このリポジトリの所有者）1 人。
+- [NEEDS CLARIFICATION: どこで、どう使うか]
 
 ## 作らないもの
 
