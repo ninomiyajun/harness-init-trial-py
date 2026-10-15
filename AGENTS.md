@@ -37,7 +37,7 @@
 
 | 何を確かめるか | コマンド |
 |---|---|
-| 全部（CI と同じ順） | `python3 -m unittest && bash scripts/harness/check-docs.sh && bash scripts/harness/check-docs.test.sh` |
+| 全部（手元の Python で、試験と文書の検査を順に実行する。CI は Python 3.9 と 3.12 の 2 つの版で試験を実行し、gitleaks は別の検査で実行するので、この 1 行には含まない） | `python3 -m unittest && bash scripts/harness/check-docs.sh && bash scripts/harness/check-docs.test.sh` |
 | lint | なし |
 | 型 | なし |
 | 試験 | `python3 -m unittest` |
